@@ -1,0 +1,47 @@
+<%= form_for(@league) do |f| %>
+  <% if @league.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@league.errors.count, "error") %> prohibited this league from being saved:</h2>
+
+      <ul>
+      <% @league.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= draft_form.label :commish%></br>
+    <%= draft_form.number_field :commish %>
+    </div>
+  <div class="field">
+    <%= f.label :name, "League Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <%= fields_for @league.draft do |draft_form| %>
+    <div class="field">
+    <%= draft_form.label :startingFunds, "Starting Funds" %></br>
+    <%= draft_form.number_field :startingFunds %>
+    </div>
+    <div class="field">
+    <%= draft_form.label :timeLimit, "Pick Time Limit in seconds-leave blank for no time limit" %></br>
+    <%= draft_form.number_field :timeLimit %>
+    </div>
+    <div class="field">
+    <h4>Pick Type of Draft</h4>
+    <%= draft_form.radio_button :draftkind, "INPERSON" %>
+    <%= draft_form.label :draftkind_INPERSON, "In person draft" %></br>
+    <%= draft_form.radio_button :draftkind, "TELECOM" %>
+    <%= draft_form.label :draftkind_TELECOM, "Draft over Skype" %></br>
+    <%= draft_form.radio_button :draftkind, "FULL" %>
+    <%= draft_form.label :draftkind_FULL, "Draft completely over Movie Draft" %></br>
+    </div>
+    <div class="field">
+    <%= draft_form.label :draftdate, "Select a date for the draft" %></br>
+    <%= draft_form.datetime_select :draftdate %>
+    </div>
+  <%end%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

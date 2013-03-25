@@ -1,4 +1,7 @@
 MovieDraft::Application.routes.draw do
+
+  resources :leagues
+
   devise_for :players
 
   root :to => "home#index"

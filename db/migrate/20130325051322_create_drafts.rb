@@ -6,6 +6,7 @@ class CreateDrafts < ActiveRecord::Migration
       t.string :integer
       t.integer :startingFunds
       t.integer :timeLimit
+      t.integer :league_id
 
       t.timestamps
     end
