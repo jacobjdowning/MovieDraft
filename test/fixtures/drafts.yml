@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  draftdate: 2013-03-25 01:13:22
+  draftkind: MyString
+  integer: MyString
+  startingFunds: 1
+  timeLimit: 1
+
+two:
+  draftdate: 2013-03-25 01:13:22
+  draftkind: MyString
+  integer: MyString
+  startingFunds: 1
+  timeLimit: 1
