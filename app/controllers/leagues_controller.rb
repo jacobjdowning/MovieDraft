@@ -42,6 +42,7 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(params[:league])
     @league.draft = Draft.new(params[:league.draft])
+    @league.commish = current_player.id
 
     respond_to do |format|
       if @league.save && @league.draft.save

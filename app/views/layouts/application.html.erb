@@ -7,10 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="../">Movie Draft</a>
+				<ul class="nav pull-right">
+					<% if player_signed_in? %>
+						<li><%= link_to current_player.profile_name, "#" %></li>
+						<li><%= link_to "Log Out", destroy_player_session_path, method: :delete %>
+					<%else%>
+						<li><%= link_to "Log In", new_player_session_path %></li>
+						<li><%= link_to "Register", new_player_registration_path %></li>
+					<%end%>
+				</ul>
+			</div>
+		</div>
 	   <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
-
-<%= yield %>
-
+		<%= yield %>
+	</div>
 </body>
 </html>
