@@ -1,0 +1,12 @@
+<h2>Add friends and draftable movies</h2>
+<h3>Add Movies</h3>
+<div id="movies-form">
+	<%= form_tag("add", remote: true, method:"post") %>
+	<%= select_tag "movies", options_from_collection_for_select(Movie.all, :id, :title), id:'movie-select' %>
+	<%= submit_tag 'Add', :class => 'btn'%>
+</div>
+<ul id="movies-show">
+	<% @movies.each do |movie| %>
+		<%= render :partial => "litem", :locals => {:item => movie.title, :id => movie.id} %>
+	<%end%>
+<ul>

@@ -1,3 +1,39 @@
 // Place all the styles related to the leagues controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.radio_label{
+	display: inline;
+}
+
+input[type=radio]{
+	margin-bottom: 7px;
+}
+
+label{
+	margin: 15px 0px 0px 0px;
+}
+
+.datetime select{
+	width: 100px;
+}
+
+input{
+	margin: 10px 0px
+}
+#movies-form form input[type=submit]{
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+
+#movies-form form select{
+	margin-bottom: 10px;
+	margin-top: 2px;
+}
+
+#movies-show li{
+	list-style: none;
+}
+
+#movies-show li .close{
+}

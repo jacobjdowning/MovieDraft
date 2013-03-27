@@ -1,11 +1,17 @@
 MovieDraft::Application.routes.draw do
 
-  resources :leagues
+  resources :leagues do
+    get '/add' => 'leagues#add'
+    post '/add' => 'leagues#added'
+    delete '/add' => 'leagues#unlink'
+  end
 
   devise_for :players
 
   root :to => "home#index"
   get "home/index"
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -24,11 +24,53 @@ class LeaguesController < ApplicationController
   # GET /leagues/new
   # GET /leagues/new.json
   def new
-    @league = League.new
-    @league.draft = Draft.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @league }
+    end
+  end
+
+
+  def unlink
+    logger.debug "unlink called"
+    @availability = Availability.where("league_id = ? AND movie_id = ?", params[:league_id], params[:movie]).first!
+    @availability.destroy
+    @selector = params[:movie]
+
+    respond_to do |format|
+      format.html{redirect_to leagues_add_path}
+      format.js {}
+    end
+  end
+
+  #GET /leagues/1/add
+  def add
+    @league = League.find(params[:league_id])
+    @movies = @league.movies
+
+    respond_to do |format|
+      format.html
+      format.js {}
+    end
+  end
+
+  #POST /leagues/1/add
+  def added
+    @availability = Availability.new()
+    @movie = Movie.find(params[:movies])
+    @availability.movie_id =  params[:movies]
+    @availability.league_id = params[:league_id]
+
+
+    respond_to do |format|
+      if @availability.save
+        format.html { redirect_to @availability, notice: 'Movie was added' }
+        format.js   {}
+        format.json { render json: @availability, status: :created, location: @availability }
+      else
+        format.html { render action: "add" }
+        format.json { render json: @availability.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -41,7 +83,7 @@ class LeaguesController < ApplicationController
   # POST /leagues.json
   def create
     @league = League.new(params[:league])
-    @league.draft = Draft.new(params[:league.draft])
+    @league.draft = Draft.new(params[:draft])
     @league.commish = current_player.id
 
     respond_to do |format|

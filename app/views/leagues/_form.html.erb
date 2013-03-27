@@ -11,33 +11,33 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :name, "League Name" %><br />
+    <%= f.label :name, "League Name" %>
     <%= f.text_field :name %>
   </div>
   <%= fields_for @league.draft do |draft_form| %>
     <div class="field">
-    <%= draft_form.label :startingFunds, "Starting Funds" %></br>
-    <%= draft_form.number_field :startingFunds %>
+      <%= draft_form.label :startingFunds, "Starting Funds" %>
+      <%= draft_form.number_field :startingFunds %>
     </div>
     <div class="field">
-    <%= draft_form.label :timeLimit, "Pick Time Limit in seconds-leave blank for no time limit" %></br>
-    <%= draft_form.number_field :timeLimit %>
+      <%= draft_form.label :timeLimit, "Pick Time Limit in seconds - leave blank for no time limit" %>
+      <%= draft_form.number_field :timeLimit %>
     </div>
     <div class="field">
-    <h4>Pick Type of Draft</h4>
-    <%= draft_form.radio_button :draftkind, "INPERSON" %>
-    <%= draft_form.label :draftkind_INPERSON, "In person draft" %></br>
-    <%= draft_form.radio_button :draftkind, "TELECOM" %>
-    <%= draft_form.label :draftkind_TELECOM, "Draft over Skype" %></br>
-    <%= draft_form.radio_button :draftkind, "FULL" %>
-    <%= draft_form.label :draftkind_FULL, "Draft completely over Movie Draft" %></br>
+      <h4>Pick Type of Draft</h4>
+      <%= draft_form.radio_button :draftkind, "INPERSON"%>
+      <%= draft_form.label :draftkind_INPERSON, "Draft in person", class: "radio_label" %><br>
+      <%= draft_form.radio_button :draftkind, "TELECOM" %>
+      <%= draft_form.label :draftkind_TELECOM, "Draft over Skype", class: "radio_label" %><br>
+      <%= draft_form.radio_button :draftkind, "FULL" %>
+      <%= draft_form.label :draftkind_FULL, "Draft completely over Movie Draft" , class: "radio_label"%></br>
     </div>
-    <div class="field">
-    <%= draft_form.label :draftdate, "Select a date for the draft" %></br>
-    <%= draft_form.datetime_select :draftdate %>
+    <div class="field datetime">
+      <%= draft_form.label :draftdate, "Select a date for the draft" %>
+      <%= draft_form.datetime_select :draftdate%>
     </div>
   <%end%>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Create League', :class => 'btn'%>
   </div>
 <% end %>
