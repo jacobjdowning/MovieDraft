@@ -47,6 +47,7 @@ class LeaguesController < ApplicationController
   def add
     @league = League.find(params[:league_id])
     @movies = @league.movies
+    @players = @league.players
 
     respond_to do |format|
       format.html
@@ -54,8 +55,29 @@ class LeaguesController < ApplicationController
     end
   end
 
-  #POST /leagues/1/add
-  def added
+  #POST /leagues/1/players
+  def addPlayer
+    if @player = Player.where("email = ?", params[:players]).first
+      @participation = Participation.new()
+      @participation.league_id = :league_id
+      @participation.player_id = @player.id
+
+      respond_to do |format|
+      if @participation.save
+        format.html { redirect_to @participation, notice: 'Movie was added' }
+        format.js   {}
+        format.json { render json: @participation, status: :created, location: @participation }
+      else
+        format.html { render action: "add" }
+        format.json { render json: @participation.errors, status: :unprocessable_entity }
+      end
+    end
+    else
+    end
+  end
+
+  #POST /leagues/1/movies
+  def addMovie
     @availability = Availability.new()
     @movie = Movie.find(params[:movies])
     @availability.movie_id =  params[:movies]

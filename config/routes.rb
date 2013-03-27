@@ -2,7 +2,8 @@ MovieDraft::Application.routes.draw do
 
   resources :leagues do
     get '/add' => 'leagues#add'
-    post '/add' => 'leagues#added'
+    post '/movies' => 'leagues#addMovie'
+    post '/players' => 'leagues#addPlayer'
     delete '/add' => 'leagues#unlink'
   end
 

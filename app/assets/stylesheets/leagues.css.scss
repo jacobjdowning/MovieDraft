@@ -26,6 +26,11 @@ input{
 	margin-top: 0px;
 }
 
+#players-form form input[type=submit]{
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
 #movies-form form select{
 	margin-bottom: 10px;
 	margin-top: 2px;
