@@ -30,12 +30,20 @@ class LeaguesController < ApplicationController
     end
   end
 
-
   def unlink
-    logger.debug "unlink called"
-    @availability = Availability.where("league_id = ? AND movie_id = ?", params[:league_id], params[:movie]).first!
-    @availability.destroy
-    @selector = params[:movie]
+    if params.has_key?("movie")
+      @availability = Availability.where("league_id = ? AND movie_id = ?", params[:league_id], params[:movie]).first!
+      @availability.destroy
+      @selector = params[:movie]
+      @kind = "movies"
+    elsif params.has_key?("player")
+      @participation = Participation.where("league_id = ? AND player_id = ?", params[:league_id], params[:player]).first!
+      @participation.destroy
+      @selector = params[:player]
+      @kind = "players"
+    else
+      logger.error('leagues::unlink was sent params with neither movie or player parameters')
+    end
 
     respond_to do |format|
       format.html{redirect_to leagues_add_path}
@@ -57,7 +65,7 @@ class LeaguesController < ApplicationController
 
   #POST /leagues/1/players
   def addPlayer
-    if @player = Player.where("email = ?", params[:players]).first
+    if @player = Player.where("email = ?", params[:players].downcase).first
       @participation = Participation.new()
       @participation.league_id = :league_id
       @participation.player_id = @player.id

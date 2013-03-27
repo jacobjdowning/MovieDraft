@@ -8,7 +8,7 @@
 </div>
 <ul id="movies-show">
 	<% @movies.each do |movie| %>
-		<%= render :partial => "litem", :locals => {:item => movie.title, :id => movie.id} %>
+		<%= render :partial => "litem", :locals => {:item => movie.title, :id => movie.id, :kind =>'movie'} %>
 	<%end%>
 </ul>
 <div id="players-form">
@@ -19,6 +19,6 @@
 </div>
 <ul id="players-show">
 	<% @players.each do |player| %>
-		<%= render :partial => "litem", :locals => {:item => player.profile_name, :id => player.id} %>
+		<%= render :partial => "litem", :locals => {:item => player.profile_name, :id => player.id, :kind =>'player'} %>
 	<%end%>
 </ul>

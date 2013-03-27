@@ -1,1 +1,1 @@
-$("<%= escape_javascript( render :partial => "litem", :locals => {:item => @movie.title, :id => @movie.id} ) %>").appendTo("#movies-show").fadeIn();
+$("<%= escape_javascript( render :partial => "litem", :locals => {:item => @movie.title, :id => @movie.id, :kind => "movie"} ) %>").appendTo("#movies-show").fadeIn();

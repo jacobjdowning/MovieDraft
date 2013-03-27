@@ -1,1 +1,4 @@
-console.log('Add Player jsb')
+$("<%= escape_javascript( render :partial => "litem", 
+	:locals => {:item => @player.profile_name, :id => @player.id, :kind =>'player'} ) %>")
+	.appendTo("#players-show").fadeIn();
+$("#players-form input[type=text]").val("");

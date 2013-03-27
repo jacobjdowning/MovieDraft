@@ -1,1 +1,1 @@
-$('#movies-show .<%= escape_javascript(@selector) %>').parent().fadeOut();
+$('#<%= escape_javascript(@kind)%>-show .<%= escape_javascript(@selector) %>').parent().fadeOut();
