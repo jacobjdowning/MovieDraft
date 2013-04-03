@@ -8,9 +8,6 @@ class Player < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_name
 
-  has_many :memberships
-  has_many :movies, :through => :memberships
-
   has_many :participations
   has_many :leagues, :through => :participations
 
