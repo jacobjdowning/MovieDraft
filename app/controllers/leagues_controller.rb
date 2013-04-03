@@ -67,14 +67,14 @@ class LeaguesController < ApplicationController
   def addPlayer
     if @player = Player.where("email = ?", params[:players].downcase).first
       @participation = Participation.new()
-      @participation.league_id = :league_id
+      @participation.league_id = params[:league_id]
       @participation.player_id = @player.id
 
       respond_to do |format|
       if @participation.save
-        format.html { redirect_to @participation, notice: 'Movie was added' }
+        format.html { redirect_to @league, notice: 'Player was added' }
         format.js   {}
-        format.json { render json: @participation, status: :created, location: @participation }
+        format.json { render json: @league, status: :created, location: @league }
       else
         format.html { render action: "add" }
         format.json { render json: @participation.errors, status: :unprocessable_entity }
@@ -94,9 +94,9 @@ class LeaguesController < ApplicationController
 
     respond_to do |format|
       if @availability.save
-        format.html { redirect_to @availability, notice: 'Movie was added' }
+        format.html { redirect_to @league, notice: 'Movie was added' }
         format.js   {}
-        format.json { render json: @availability, status: :created, location: @availability }
+        format.json { render json: @league, status: :created, location: @league }
       else
         format.html { render action: "add" }
         format.json { render json: @availability.errors, status: :unprocessable_entity }

@@ -3,7 +3,7 @@
 <div id="movies-form">
 	<%= form_tag("movies", remote: true, method:"post") do -%>
 	<%= select_tag "movies", options_from_collection_for_select(Movie.all, :id, :title), id:'movie-select' %>
-	<%= submit_tag 'Add', :class => 'btn'%>
+	<%= submit_tag 'Add', :class => 'btn', remote: true%>
 	<% end -%>
 </div>
 <ul id="movies-show">
