@@ -9,6 +9,13 @@ GIT
       railties (> 3.1)
       warden (~> 1.2.1)
 
+GIT
+  remote: git://github.com/ngauthier/websocket-ruby.git
+  revision: 8fc3bbc8f336fb5ccac95b8707e8146e86a8002d
+  ref: 8fc3bbc8f336fb5ccac95b8707e8146e86a8002d
+  specs:
+    websocket (1.0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -67,6 +74,8 @@ GEM
     polyglot (0.3.3)
     protected_attributes (1.0.0)
       activemodel (>= 4.0.0.beta, < 5.0)
+    puma (1.6.3)
+      rack (~> 1.2)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -110,6 +119,9 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    tubesock (0.1.2)
+      rack (> 1.5.0)
+      websocket
     tzinfo (0.3.37)
     warden (1.2.1)
       rack (>= 1.0)
@@ -122,6 +134,9 @@ DEPENDENCIES
   devise!
   jquery-rails
   protected_attributes
+  puma
   rails (= 4.0.0.beta1)
   sass-rails (~> 4.0.0.beta1)
   sqlite3
+  tubesock
+  websocket!

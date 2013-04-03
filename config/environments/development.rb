@@ -6,6 +6,7 @@ MovieDraft::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  config.eager_load = true
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -32,4 +33,8 @@ MovieDraft::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.logger = Logger.new(STDOUT)
+
+  #for websocket-rails: https://github.com/DanKnox/websocket-rails/wiki/Installation-and-Setup
+  config.middleware.delete Rack::Lock
+  
 end
