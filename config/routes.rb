@@ -11,7 +11,7 @@ MovieDraft::Application.routes.draw do
 
   root :to => "home#index"
   get "home/index"
-
+  get "drafts/:id/" => "draft#show"
 
 
   # The priority is based upon order of creation:
