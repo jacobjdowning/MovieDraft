@@ -24,8 +24,8 @@ class LeaguesController < ApplicationController
   # GET /leagues/new
   # GET /leagues/new.json
   def new
-    @league = League.new(params[:league])
-    @league.draft = Draft.new(params[:draft])
+    @league = League.new()
+    @league.draft = Draft.new()
 
     respond_to do |format|
       format.html # new.html.erb

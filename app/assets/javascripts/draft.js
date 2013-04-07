@@ -6,36 +6,19 @@ $(document).ready(function(){
 		$('<p>Oh no, you need a browser that supports WebSockets. How about <a href="http://www.google.com/chrome">Google Chrome</a>?</p>').appendTo('#container');		
 	}else{
 		//this user has websockets
+		var highestbidder
+		var highestbid
+		var funds
+		var channel = location.pathname
+		channel = channel.substr(channel.lastIndexOf("/")+1);
+		console.log("channel: " + channel);
 
-		connect();
+		var dispatcher = new WebSocketRails('localhost:3000/websocket')
 
-		function connect(){
-			try{
-				var socket;
-				var host = "ws://" +  window.location.host + "/drafts/" + league_id + "/socket";
-				socket = new WebSocket(host);
-
-				socket.onopen = function(){
-					message('Socket Status: ' + socket.readyState);
-				}
-
-				socket.onmessage = function(){
-					message('bid happend');
-				}
-
-				socket.onclose = function(){
-					message('Socket Status: ' + socket.readyState);
-				}
-	
-
-			}catch(exception){
-				console.log('Error: ' + exception);
-			}
-			
-			function message(msg){
-				$('#bidder').innerHTML(msg);
-			}
+		dispatcher.on_open = function(data){
+			console.log('connection has been established: ' + data);
 		}
+
 	}
 
 });

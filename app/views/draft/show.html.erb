@@ -2,7 +2,11 @@
 	<div class="span3">
 		<div id="upcoming" class="">
 			<h3>Upcoming Movies</h3>
-			<%= render :partial => "availableMovies" %>
+			<ul id="availMov">
+				<% @availableMovies.each do |movie| %>
+					<li><%= movie.title %></li>
+				<%end%>
+			</ul>
 		</div>
 
 	</div>
@@ -11,7 +15,7 @@
 				<h4>00:00</h4>
 		</div>
 		<div id="bidder" class="alert alert-success">
-			highest bidder is Jake with $5
+			Welcome to the draft client!
 		</div>
 		<div id="poster">
 			<img src="http://marvelll.fr/wp-content/gallery/oblivion/oblivion-poster.jpg" alt="Movie Poster"></img>
@@ -19,7 +23,7 @@
 	</div>
 	<div class="span3">
 		<div id="funds" class ="pull-right">
-			<h2>$100</h2>
+			<h2>$<%= @draft.startingFunds %></h2>
 		</div>
 	</div>
 </div>
@@ -35,15 +39,17 @@
 	</div>
 	<div class="span6 text-center">
 		<div id="bid">
-			<input type="text"></input>
-			<a href='#' class="btn btn-large btn-success">Bid</a>
+			<% if @draft.draftkind != "INPERSON"%>
+				<% if @draft.draftkind == "FULL" %>
+					<input type="text"></input>
+				<% end %>
+				<a href='#' class="btn btn-large btn-success">Bid</a>
+			<% end %>
 		</div>
 		<div id="sell">
-			<input type="text"></input>
+			<% if @draft.draftkind != "FULL" %>
+				<input type="text"></input>
+			<%end%>
 			<a href='#' class="btn btn-large btn-danger">Sell</a>
 		</div>
 	</div>
-
-<%= javascript_tag do %>
- 	window.league_id = <%=@league.id %>;
-<% end %>
