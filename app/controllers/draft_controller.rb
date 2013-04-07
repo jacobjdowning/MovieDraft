@@ -1,4 +1,5 @@
 class DraftController < ApplicationController
+	
 	def show
 		@league = League.find(params[:id])
 		@draft = @league.draft

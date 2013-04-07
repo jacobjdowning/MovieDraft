@@ -43,3 +43,7 @@
 			<a href='#' class="btn btn-large btn-danger">Sell</a>
 		</div>
 	</div>
+
+<%= javascript_tag do %>
+ 	window.league_id = <%=@league.id %>;
+<% end %>
