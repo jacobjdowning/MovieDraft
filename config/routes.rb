@@ -7,11 +7,13 @@ MovieDraft::Application.routes.draw do
     delete '/add' => 'leagues#unlink'
   end
 
-  devise_for :players
+  devise_for :players ##, :controllers => {:registrations => "players/registrations", :passwords => "players/passwords"}
 
   root :to => "home#index"
   get "home/index"
   get "drafts/:id/" => "draft#show"
+
+
 
 
   # The priority is based upon order of creation:

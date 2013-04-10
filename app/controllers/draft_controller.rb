@@ -4,6 +4,8 @@ class DraftController < ApplicationController
 		@league = League.find(params[:id])
 		@draft = @league.draft
 		@availableMovies = @league.movies.where("player_id IS NULL").order("releaseDate DESC")
+		@player = current_player
+
 
 	    respond_to do |format|
 	      format.html # show.html.erb

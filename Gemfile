@@ -7,7 +7,6 @@ gem 'rails', '4.0.0.beta1'
 
 gem 'sqlite3'
 gem 'devise', github: 'idl3/devise', branch: 'rails4'
-gem 'protected_attributes'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,7 +16,7 @@ gem 'coffee-rails', '~> 4.0.0.beta1'
 gem 'jquery-rails'
 
 
-
+gem 'protected_attributes'
 
 # Web sockets for draft ui
 

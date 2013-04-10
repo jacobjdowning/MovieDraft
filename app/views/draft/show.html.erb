@@ -1,10 +1,10 @@
-<div class ="row">
+<div class ="row" id="draft" data-uri="<%= request.host %>:<%= request.port %>/websocket" data-kind="<%= @draft.draftkind %>" data-user="<%= @player.email %>" data-userId ="<%= @player.id %>">
 	<div class="span3">
 		<div id="upcoming" class="">
 			<h3>Upcoming Movies</h3>
 			<ul id="availMov">
 				<% @availableMovies.each do |movie| %>
-					<li><%= movie.title %></li>
+					<li data-id="<%= movie.id %>"><%= movie.title %></li>
 				<%end%>
 			</ul>
 		</div>
@@ -18,7 +18,7 @@
 			Welcome to the draft client!
 		</div>
 		<div id="poster">
-			<img src="http://marvelll.fr/wp-content/gallery/oblivion/oblivion-poster.jpg" alt="Movie Poster"></img>
+			<img src="" alt="Movie Poster"></img>
 		</div>
 	</div>
 	<div class="span3">
@@ -32,8 +32,6 @@
 		<div id="owned" class="">
 			<h3>Owned Movies</h3>
 			<ul>
-				<li>Pain and Gain</li>
-				<li>Monsters U</li>
 			</ul>
 		</div>
 	</div>
@@ -46,10 +44,12 @@
 				<a href='#' class="btn btn-large btn-success">Bid</a>
 			<% end %>
 		</div>
-		<div id="sell">
-			<% if @draft.draftkind != "FULL" %>
-				<input type="text"></input>
-			<%end%>
-			<a href='#' class="btn btn-large btn-danger">Sell</a>
-		</div>
+		<% if @player.id == @draft.league.commish %> 
+			<div id="sell">
+				<% if @draft.draftkind != "FULL" %>
+					<input type="text"></input>
+				<%end%>
+				<a href='#' class="btn btn-large btn-danger">Sell</a>
+			</div>
+		<% end %>
 	</div>
